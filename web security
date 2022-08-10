@@ -1,0 +1,17 @@
+SQL Injection 
+- Retreive hidden data - comment or SQL query to show more info from db than needed
+- Subverting application logic - admin user creds without password
+- Retreiving data from other db tables - using UNION
+- Examining db - versions and schema
+- Blind SQL injection - change logic to detect response time - predict the condition, trigger out of band network interaction - OAST
+- XML based SQL injection - obfuscate and escape chars in XML
+- First order injection - user input from HTTP request and when processing it incorporates input into SQL query in unsafe manner
+- Second order injection - user input from HTTP requirest and stores it for future use. Later when handling different HTTP request, retreives the stored data and incorporates it into SQL query in unsafe way
+
+Prevent SQL injection
+- USE parameterized queries - prevents user input from interfering or modifying SQL query
+  - vulnerable code due to user untrusted input appears as data (used with WHERE, INSERT or UPDATE) and is concatenation directly without input validation
+- USE whitelisting permitted input values 
+  - unstrusted input in parts of query sucha as table or column names or order by clause
+
+For a parameterized query to be effective in preventing SQL injection, the string that is used in the query must always be a hard-coded constant, and must never contain any variable data from any origin. Do not be tempted to decide case-by-case whether an item of data is trusted, and continue using string concatenation within the query for cases that are considered safe. It is all too easy to make mistakes about the possible origin of data, or for changes in other code to violate assumptions about what data is tainted.
